@@ -34,5 +34,5 @@ app.use('/donuts', donutRoutes)
 app.use('/api/donuts', donutAPIRoutes);
 app.use('/users', userRoutes);
 app.use('/api/users', userAPIRoutes);
-app.listen(port);
+app.listen(process.env.PORT || port);
 console.log("server running on: " + port)
