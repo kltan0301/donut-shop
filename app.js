@@ -7,7 +7,12 @@ var bodyParser = require('body-parser');
 //set up db
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/donutShop');
+
+if(process.env.NODE_ENV === 'production'){
+  mongoose.connect('mongodb://kltan:password@ds035653.mlab.com:35653/wdi6');
+}else{
+  mongoose.connect('mongodb://localhost/donutShop');
+}
 
 //set up routes
 var donutRoutes = require('./routes/donuts');
