@@ -1,0 +1,22 @@
+
+<h2>List all users</h2>
+<form class="new-user">
+  <div class="row">
+    <div class="four columns">
+      <input type="text" name="user[name]" id="username" placeholder="Your username" class="u-full-width">
+    </div>
+    <div class="four columns">
+      <input type="text" name="user[email]" id="user-email" placeholder="Your email" class="u-full-width">
+    </div>
+    <div class="four columns">
+      <input type="password" name="user[password]" id="user-password" placeholder="Your password" class="u-full-width">
+    </div>
+    <input type="submit" value='Save My user'>
+  </div>
+</form>
+
+
+<% usersArr.forEach(function(user) { %>
+  <li><%= user.flavor %></li>
+  <li><%= user.type %></li>
+<% }) %>
