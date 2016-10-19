@@ -3,16 +3,19 @@ var app = express()
 var port = 4000;
 var expressLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
+var dotenv = require('dotenv')
 
 //set up db
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
-if(process.env.NODE_ENV === 'production'){
-  mongoose.connect('mongodb://kltan:password@ds035653.mlab.com:35653/wdi6');
-}else{
-  mongoose.connect('mongodb://localhost/donutShop');
-}
+dotenv.load({ path: '.env.' + process.env.NODE_ENV});
+mongoose.connect(process.env.MONGO_URI)
+// if(process.env.NODE_ENV === 'production'){
+//   mongoose.connect('mongodb://kltan:password@ds035653.mlab.com:35653/wdi6');
+// }else{
+//   mongoose.connect('mongodb://localhost/donutShop');
+// }
 
 //set up routes
 var donutRoutes = require('./routes/donuts');
