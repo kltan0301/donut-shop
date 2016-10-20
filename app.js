@@ -4,6 +4,9 @@ var port = 4000;
 var expressLayouts = require('express-ejs-layouts');
 var bodyParser = require('body-parser');
 var dotenv = require('dotenv')
+var session = require('express-session');
+var flash = require('connect-flash');
+var passport = require('passport');
 
 //set up db
 var mongoose = require('mongoose');
@@ -11,11 +14,6 @@ mongoose.Promise = global.Promise;
 
 dotenv.load({ path: '.env.' + process.env.NODE_ENV});
 mongoose.connect(process.env.MONGO_URI)
-// if(process.env.NODE_ENV === 'production'){
-//   mongoose.connect('mongodb://kltan:password@ds035653.mlab.com:35653/wdi6');
-// }else{
-//   mongoose.connect('mongodb://localhost/donutShop');
-// }
 
 //set up routes
 var donutRoutes = require('./routes/donuts');
@@ -26,10 +24,17 @@ var userAPIRoutes = require('./routes/users_api');
 //set up views
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
+app.use(session({
+  secret: process.env.EXPRESS_SECRET,
+  resave: true,
+  saveUninitialized: true
+}))
+app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
 //serve static files
 app.use(express.static(__dirname + '/public'))
-
 //set up body parser
 //parse json request
 app.use(bodyParser.json());

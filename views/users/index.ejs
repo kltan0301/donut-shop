@@ -3,20 +3,21 @@
 <form class="new-user">
   <div class="row">
     <div class="four columns">
-      <input type="text" name="user[name]" id="username" placeholder="Your username" class="u-full-width">
+      <input type="text" name="user[local][name]" id="username" placeholder="Your username" class="u-full-width">
     </div>
     <div class="four columns">
-      <input type="text" name="user[email]" id="user-email" placeholder="Your email" class="u-full-width">
+      <input type="text" name="user[local][email]" id="user-email" placeholder="Your email" class="u-full-width">
     </div>
     <div class="four columns">
-      <input type="password" name="user[password]" id="user-password" placeholder="Your password" class="u-full-width">
+      <input type="password" name="user[local][password]" id="user-password" placeholder="Your password" class="u-full-width">
     </div>
     <input type="submit" value='Save My user'>
   </div>
 </form>
 
-
-<% usersArr.forEach(function(user) { %>
-  <li><%= user.flavor %></li>
-  <li><%= user.type %></li>
+<a href="/users/login">hello</a>
+<% usersArr.forEach(function(user) { console.log(user)%>
+  <li><%= user.local.name %></li>
+  <li><%= user.local.email %></li>
+  <li><%= user.local.password %></li>
 <% }) %>
